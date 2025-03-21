@@ -431,6 +431,223 @@
                 padding: 0 5px;
             }
         }
+
+        /* Add styles for comments section */
+        .comments-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(78, 205, 196, 0.2);
+            border-radius: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .comments-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                -45deg,
+                rgba(78, 205, 196, 0.1),
+                rgba(69, 183, 209, 0.1),
+                rgba(78, 205, 196, 0.1),
+                rgba(69, 183, 209, 0.1)
+            );
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            z-index: 0;
+        }
+
+        #comments-container {
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .comment {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0;
+            border-left: 4px solid #4ecdc4;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comment:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment::before {
+            content: '✨';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 20px;
+            text-shadow: 0 0 10px gold;
+        }
+
+        .comment:hover::before {
+            opacity: 1;
+        }
+
+        .comment-timestamp {
+            font-size: 0.8em;
+            color: #000;
+            margin-bottom: 5px;
+            font-family: 'Schreibmaschine', monospace;
+        }
+
+        .comment-name {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+            font-family: 'Hershey', sans-serif;
+        }
+
+        .comment-text {
+            font-size: 1em;
+            line-height: 1.5;
+            font-family: 'Hershey', sans-serif;
+            color: #000;
+        }
+
+        #comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #comment-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid #4ecdc4;
+            border-radius: 0;
+            font-family: 'Hershey', sans-serif;
+            font-size: 1em;
+            resize: vertical;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            color: #000;
+        }
+
+        #comment-form button {
+            padding: 12px 24px;
+            background: #4ecdc4;
+            color: #000;
+            border: none;
+            border-radius: 0;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Hershey', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
+        }
+
+        #comment-form button:hover {
+            background: #45b7d1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        #comment-form button:active {
+            transform: translateY(0);
+        }
+
+        /* Add styles for name input */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            position: relative;
+        }
+
+        .form-group label {
+            font-size: 0.9em;
+            color: #000;
+            font-family: 'Schreibmaschine', monospace;
+        }
+
+        #name-input {
+            padding: 8px 12px;
+            border: 2px solid #4ecdc4;
+            border-radius: 0;
+            font-family: 'Hershey', sans-serif;
+            font-size: 1em;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            color: #000;
+        }
+
+        #name-input:focus, #comment-input:focus {
+            outline: none;
+            border-color: #45b7d1;
+            box-shadow: 0 0 10px rgba(69, 183, 209, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Scrollbar styling */
+        #comments-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #comments-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0;
+        }
+
+        #comments-container::-webkit-scrollbar-thumb {
+            background: #4ecdc4;
+            border-radius: 0;
+            transition: background 0.3s ease;
+        }
+
+        #comments-container::-webkit-scrollbar-thumb:hover {
+            background: #45b7d1;
+        }
+
+        /* Responsive styles for comments section */
+        @media (max-width: 768px) {
+            .comments-section {
+                padding: 15px;
+                margin: 20px 10px;
+                animation: none;
+            }
+
+            .comment {
+                padding: 10px;
+            }
+
+            #comment-input {
+                min-height: 80px;
+            }
+
+            .comment:hover {
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -438,6 +655,19 @@
     <h1 class="animated-title">dataset.zip</h1>
     
     <div id="output"></div>
+
+    <div class="comments-section">
+        <h3 class="animated-title">Kommentarer</h3>
+        <div id="comments-container"></div>
+        <form id="comment-form">
+            <div class="form-group">
+                <label for="name-input">Namn:</label>
+                <input type="text" id="name-input" placeholder="Skriv ditt namn..." required>
+            </div>
+            <textarea id="comment-input" placeholder="Skriv din kommentar här..." required></textarea>
+            <button type="submit">Skicka kommentar</button>
+        </form>
+    </div>
 
     <div class="content-container">
         <h3 class="animated-title">About this site</h3>
@@ -577,6 +807,80 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vQPoasWdp_crym3XzK3Q-jwKe3d_IZK9
             const output = document.getElementById("output");
             output.innerHTML = ""; // Clear previous content
             output.appendChild(table);
+        }
+    </script>
+
+    <script>
+        // Replace this URL with your deployed Apps Script URL
+        const COMMENTS_API_URL = 'https://script.google.com/macros/s/AKfycbw6vf2na0SVXJpepsp7Qro3vwkdXjhu0bII3p2i3TGoaKiUHPcG3LiH9gTg2qBG9OAp/exec';
+
+        // Load comments when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComments();
+        });
+
+        // Handle comment form submission
+        document.getElementById('comment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('name-input');
+            const commentInput = document.getElementById('comment-input');
+            const name = nameInput.value.trim();
+            const comment = commentInput.value.trim();
+            
+            if (!name || !comment) return;
+
+            try {
+                const response = await fetch(COMMENTS_API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        name: name,
+                        comment: comment 
+                    })
+                });
+
+                if (response.ok) {
+                    nameInput.value = '';
+                    commentInput.value = '';
+                    loadComments(); // Reload comments
+                } else {
+                    console.error('Failed to post comment');
+                }
+            } catch (error) {
+                console.error('Error posting comment:', error);
+            }
+        });
+
+        // Load comments from the spreadsheet
+        async function loadComments() {
+            try {
+                const response = await fetch(COMMENTS_API_URL);
+                const data = await response.json();
+                
+                const commentsContainer = document.getElementById('comments-container');
+                commentsContainer.innerHTML = '';
+                
+                // Sort comments by timestamp (newest first)
+                data.comments.sort((a, b) => new Date(b[0]) - new Date(a[0]));
+                
+                data.comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment';
+                    
+                    const timestamp = new Date(comment[0]).toLocaleString();
+                    const name = comment[1];
+                    const text = comment[2];
+                    
+                    commentElement.innerHTML = `
+                        <div class="comment-timestamp">${timestamp}</div>
+                        <div class="comment-name">${name}</div>
+                        <div class="comment-text">${text}</div>
+                    `;
+                    
+                    commentsContainer.appendChild(commentElement);
+                });
+            } catch (error) {
+                console.error('Error loading comments:', error);
+            }
         }
     </script>
 
