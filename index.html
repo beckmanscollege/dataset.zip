@@ -18,10 +18,20 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: left;
             font-family: "Schreibmaschine", "Times New Roman", Times, serif;
             font-size: 30px;
             text-align: center;
+            padding: 3em;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            font-weight: normal;
+            
+
+        
         }
         #output { text-align: center; }
         #output p { margin: 0.5em 0; }
@@ -54,6 +64,9 @@
             const beskrivningKey = getKey("Beskrivning");
             const namnKey = getKey("namn");
             const urlKey = getKey("URL");
+            const colAKey = keys[0];
+            const colBKey = keys[1]; // "B column" (2nd column in the sheet)
+            const colCKey = keys[2]; // new "C column" (3rd column in the sheet)
 
             const container = document.getElementById("output");
 
@@ -90,76 +103,40 @@
 
                 const beskrivning = (row[beskrivningKey] != null ? String(row[beskrivningKey]) : "").trim();
                 const namn = (row[namnKey] != null ? String(row[namnKey]) : "").trim();
+                const colC = (colCKey && row[colCKey] != null ? String(row[colCKey]) : "").trim();
                 let url = (row[urlKey] != null ? String(row[urlKey]) : "").trim();
                 if (url && !/^https?:\/\//i.test(url)) url = "https://" + url;
 
-                const lineText = beskrivning ? beskrivning + " by " + (namn || "—") : namn || "—";
-
                 const p = document.createElement("p");
-                if (url) {
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.textContent = lineText;
-                    a.target = "_blank";
-                    a.rel = "noopener";
-                    p.appendChild(a);
+
+                // Required output format:
+                // A column text, then ":" + line break, then C column text.
+                // Only the C column value is a link (when `url` exists).
+                // Preserve previous fallback behavior:
+                // if A/Beskrivning is empty, show the name (namn) instead.
+                const aText = beskrivning ? beskrivning : (namn || "—");
+                const cText = colC || "—";
+
+                p.appendChild(document.createTextNode(`${aText}:`));
+                p.appendChild(document.createElement("br"));
+
+                if (url && cText) {
+                    const cLink = document.createElement("a");
+                    cLink.href = url;
+                    cLink.textContent = cText;
+                    cLink.target = "_blank";
+                    cLink.rel = "noopener";
+                    p.appendChild(cLink);
                 } else {
-                    p.textContent = lineText;
+                    p.appendChild(document.createTextNode(cText));
                 }
 
                 container.appendChild(p);
-                itemsToAnimate.push({ el: url ? p.querySelector("a") : p, text: lineText });
             });
 
-            animateLetters(itemsToAnimate);
         }
 
-        function animateLetters(items) {
-            if (!items.length) return;
-
-            const state = new Map();
-
-            items.forEach(item => {
-                const chars = Array.from(item.text);
-                const display = chars.map(() => "");
-                state.set(item.el, { chars, display });
-                item.el.textContent = "";
-            });
-
-            let delay = 0;
-            const stepDelay = 5;
-            const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-            // Reveal all a's, then b's, etc, across all elements
-            for (const letter of alphabet) {
-                items.forEach(item => {
-                    const data = state.get(item.el);
-                    data.chars.forEach((ch, idx) => {
-                        if (data.display[idx] === "" && ch.toLowerCase() === letter) {
-                            delay += stepDelay;
-                            setTimeout(() => {
-                                data.display[idx] = ch;
-                                item.el.textContent = data.display.join("").replace(/ /g, "\u00A0");
-                            }, delay);
-                        }
-                    });
-                });
-            }
-
-            // Finally reveal remaining characters (spaces, punctuation, digits, etc.)
-            items.forEach(item => {
-                const data = state.get(item.el);
-                data.chars.forEach((ch, idx) => {
-                    if (data.display[idx] === "") {
-                        delay += stepDelay;
-                        setTimeout(() => {
-                            data.display[idx] = ch;
-                            item.el.textContent = data.display.join("").replace(/ /g, "\u00A0");
-                        }, delay);
-                    }
-                });
-            });
-        }
+      
     </script>
 </body>
 </html>
