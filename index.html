@@ -3,46 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spreadsheet Data</title>
+    <meta name="description" content="Åtta interaktiva idéer inför valet 2026 från Beckmans Designhögskola. Utforska projekt, beskrivningar och länkar.">
+    <meta name="author" content="Beckmans Designhögskola">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Åtta interaktiva idéer inför valet 2026 — Beckmans Designhögskola 2026">
+    <meta property="og:description" content="Åtta interaktiva idéer inför valet 2026 från Beckmans Designhögskola.">
+    <meta property="og:image" content="https://edu.peter.stream/dataset.zip.icon.png">
+    <meta property="og:url" content="https://edu.peter.stream/dataset.zip/">
+    <meta property="og:site_name" content="Beckmans Designhögskola">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Åtta interaktiva idéer inför valet 2026 — Beckmans Designhögskola 2026">
+    <meta name="twitter:description" content="Åtta interaktiva idéer inför valet 2026 från Beckmans Designhögskola.">
+    <meta name="twitter:image" content="https://edu.peter.stream/dataset.zip.icon.png">
+    <link rel="icon" type="image/png" href="https://edu.peter.stream/dataset.zip.icon.png">
+    <link rel="apple-touch-icon" href="https://edu.peter.stream/dataset.zip.icon.png">
+    <title>Åtta interaktiva idéer inför valet 2026 — Beckmans Designhögskola 2026</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
-        @font-face {
-            font-family: "Schreibmaschine";
-            src: url("schreibmaschine.woff") format("woff");
+
+        :root {
+            --text-color: rgb(0, 0, 0);
+            --link-color: var(--text-color);
+            --outline-color:  var(--text-color);
+            --outline-link-color:  rgb(255, 0, 0);
+            --bg: white;
+     }
+
+        @font-face {    
+            font-family: "hps-op";
+            src: url("hps-ot.woff") format("woff");
             font-weight: normal;
             font-style: normal;
         }
+
+        @font-face {
+            font-family: "hps-old";
+            src: url("hps-op.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+
         body {
             margin: 0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: left;
-            font-family: "Schreibmaschine", "Times New Roman", Times, serif;
-            font-size: 30px;
-            text-align: center;
-            padding: 3em;
+            font-family: "hps-op", "Times New Roman", Times, serif;
+            text-align: left;
+            padding: 24px;
+            background: radial-gradient(circle at center, #38ff1e 0%, #1e5eff 25%, yellow 50%, #e84848 75%, red 100%);
+            letter-spacing: -1px;
+
+
         }
 
-        h1 {
+ 
+
+        .layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        #headings {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        #headings, #output {
+            box-sizing: border-box;
+        }
+
+        #output {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        @media (max-width: 800px) {
+            .layout {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            #headings,
+            #output {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+        }
+
+
+         h1.intro {
+            font-size: 44px;
+            font-weight: normal; 
+            padding: 0;
+            margin: 0;   
+            line-height: 1em;  
+            color: var(--outline-color);
+            -webkit-text-stroke: 1px;
+            -webkit-text-stroke-color: var(--outline-color);
             text-align: center;
-            font-size: 30px;
-            font-weight: normal;
+            padding-bottom: 1em;
+            padding-top: 0.5em;
+            letter-spacing: -2px;
+
+        }
+
+.markering {
+    background-color: var(--text-color);
+    -webkit-text-stroke-color: var(--bg);
+    color: var(--bg);
+}
+
+        #headings h2 {
+            font-size: 32px;
+            font-weight: normal; 
+            padding: 0;
+            margin: 0;   
+            line-height: 1em;  
+            color: var(--text-color);
+            -webkit-text-stroke: 1px;
+            -webkit-text-stroke-color: var(--outline-color);
+            text-align: left;
+            padding-bottom: 0.5em;
             
+        }
+
+  
+
+        #output h1 {
+            font-size: 32px;
+            font-weight: normal; 
+            padding: 0;
+            margin: 0;   
+            line-height: 1em;  
+            color: var(--text-color);
+            -webkit-text-stroke: 1px;
+            -webkit-text-stroke-color: var(--outline-color);
+            text-align: center;
+        }
+
+      #output h2 {
+            font-size: 32px;
+            font-weight: normal; 
+            padding: 0 0 0.5em 0;
+            margin: 0;   
+            line-height: 1em;  
+            color: var(--link-color);
+            -webkit-text-stroke: 1px;
+            -webkit-text-stroke-color: var(--outline-link-color);
+            text-align: left;
+        }
+
+        a, a:visited { 
+            color: var(--outline-color);
+            -webkit-text-stroke: 1px;
+            -webkit-text-stroke-color: var(--text-color);
+            text-decoration: none; 
+            background-color: var(--bg);;
+
+        }
+
+        a:hover { 
+            color: var(--text-outline);
+            -webkit-text-stroke: 1px;
+            color: var(--link-color);
+            -webkit-text-stroke-color: var(--text-color);
+            text-decoration: none;
+            background-color: var(--text-color);
+ 
+        }
+
 
         
+
+        #output p { 
+            margin: 0 0; 
         }
-        #output { text-align: center; }
-        #output p { margin: 0.5em 0; }
-        #output a { color: blue; text-decoration: 2px solid blue; }
+
+    
     </style>
 </head>
 <body>
-    <div id="output"></div>
+    <h1 class="intro"><span class="markering">Åtta interaktiva idéer inför valet 2026</span></h1>
+
+    <div class="layout">
+        <div id="headings">
+
+            <h2>
+            Under fyra veckor har studenterna i andra året på programmet för visuell kommunikation vid <a href="https://www.beckmans.se/">Beckmans Designhögskola</a> 
+            fördjupat sig i politisk kommunikation, datavisualisering, (vibe-)kodning och Figma i kursen Interaktiv design 2. 
+            </h2>
+            <h2>
+            Resultatet är åtta arbeten som undersöker och presenterar förslag på kommunikativa riktningar i relation till frågor knutna till valåret 2026: 
+            Bostadsbristens Stockholm, mobilförbud i skolan, övervakningskulturen i Sverige, och mycket annat. 
+            Klicka på länkarna för se studenternas arbeten och fördjupa dig!* 
+        </h2>
+        <h2>
+            Kursen är ledd av <a href="https://edu.peter.stream">Peter Ström</a>, lektor i visuell kommunikation och har hållts i samarbete med 
+            <a href="https://www.reformsociety.se/">Reform Society</a>. 
+            Tack till Jakob, Njord och Petter för
+            enormt värdefull input och medverkan i kursen, samt Elin och Anna från <a href="https://www.kid-id.se/">Kid ID</a> för studiebesök och föreläsning, 
+            <a href="https://www.einarzotterman.com/">Einar Zotterman</a> för Figma-expertis och 
+            <a href="https://www.konst-teknik.se"> Mattias Jakobsson</a> och <a href="https://www.minnafloss.com">Minna Floss</a> för medverkan som kritiker!
+        </h2>
+        <h2>
+
+            Kontakt:<br>
+            Peter Ström, lektor i visuell kommunikation<br>
+            peter.strom (at) beckmans.se        </h2>
+            <h2>
+                *Webbsidorna är inte anpassade efter mobiltelefoner, så titta på en dator för bästa upplevelse.
+
+            </h2>
+        </div>
+        <div id="output"></div>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            applyRandomizedBackground();
+            setInterval(applyRandomizedBackground, 10000);
             const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQg7_DJGHOxgCsmo5c6eYtYapN7n0ul4e0QA6g8k10miWS6VTEWZLmbP063i9FQYSbarFwm_9IMvN1m/pub?output=csv";
 
             Papa.parse(csvUrl, {
@@ -53,6 +234,20 @@
                 }
             });
         });
+
+        function applyRandomizedBackground() {
+            const colors = ["#38ff1e", "#1e5eff", "yellow", "#e84848", "red"];
+            const stops = ["0%", "25%", "50%", "75%", "100%"];
+            const shuffled = [...colors];
+
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            const parts = shuffled.map((color, i) => `${color} ${stops[i]}`);
+            document.body.style.background = `radial-gradient(circle at center, ${parts.join(", ")})`;
+        }
 
         function renderLines(data, headers) {
             const keys = headers.length ? headers : (data[0] ? Object.keys(data[0]) : []);
@@ -68,37 +263,18 @@
             const colBKey = keys[1]; // "B column" (2nd column in the sheet)
             const colCKey = keys[2]; // new "C column" (3rd column in the sheet)
 
+            const headingsContainer = document.getElementById("headings");
             const container = document.getElementById("output");
 
             const itemsToAnimate = [];
 
-            // Use A11 as <h1> and B11 as bottom <p>
-            const titleRowIndex = 9; // zero-based index -> row 11 in the sheet
-            const titleRow = data[titleRowIndex];
-            if (titleRow && typeof titleRow === "object") {
-                const colAKey = keys[0];
-                const colBKey = keys[1];
-                const titleText = (titleRow[colAKey] != null ? String(titleRow[colAKey]) : "").trim();
-                const bottomText = (titleRow[colBKey] != null ? String(titleRow[colBKey]) : "").trim();
-
-                if (titleText) {
-                    const h1 = document.createElement("h1");
-                    h1.textContent = titleText;
-                    document.body.insertBefore(h1, container);
-                    itemsToAnimate.push({ el: h1, text: titleText });
-                }
-
-                if (bottomText) {
-                    const bottomP = document.createElement("p");
-                    bottomP.textContent = bottomText;
-                    document.body.appendChild(bottomP);
-                    itemsToAnimate.push({ el: bottomP, text: bottomText });
-                }
-            }
+            // Do not render row 2 (A2/B2) at all.
+            // With header:true, data[0] is sheet row 2.
+            const titleRowIndex = 0;
 
             data.forEach((row, index) => {
                 if (!row || typeof row !== "object") return;
-                // Skip the special title row (A11/B11)
+                // Skip the title row (B2/C2 used for headings)
                 if (index === titleRowIndex) return;
 
                 const beskrivning = (row[beskrivningKey] != null ? String(row[beskrivningKey]) : "").trim();
@@ -116,6 +292,28 @@
                 // if A/Beskrivning is empty, show the name (namn) instead.
                 const aText = beskrivning ? beskrivning : (namn || "—");
                 const cText = colC || "—";
+
+                // A3-A10 -> <h1>, C3-C10 -> <h2> in #output
+                // With header:true: index 1..8 corresponds to sheet rows 3..10.
+                if (index >= 1 && index <= 8) {
+                    const outH1 = document.createElement("h1");
+                    outH1.textContent = aText;
+                    container.appendChild(outH1);
+
+                    const outH2 = document.createElement("h2");
+                    if (url && cText) {
+                        const cLink = document.createElement("a");
+                        cLink.href = url;
+                        cLink.textContent = cText;
+                        cLink.target = "_blank";
+                        cLink.rel = "noopener";
+                        outH2.appendChild(cLink);
+                    } else {
+                        outH2.textContent = cText;
+                    }
+                    container.appendChild(outH2);
+                    return;
+                }
 
                 p.appendChild(document.createTextNode(`${aText}:`));
                 p.appendChild(document.createElement("br"));
